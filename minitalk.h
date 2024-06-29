@@ -4,6 +4,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 
 
@@ -14,5 +15,8 @@ int 	ft_isdigit(int c);
 int     check(char *str);
 int     errors_in_main(int ac, char **av);
 size_t	ft_strlen(char *str);
+void    send_msg(int pid, char *str);
+void    Receive_signals(int signal);
+
 
 #endif

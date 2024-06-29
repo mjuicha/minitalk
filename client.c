@@ -15,17 +15,19 @@ void    send_msg(int pid, char *str)
     int b;
 
     i = 0;
-    while (str[i] != '\0')
+    while (1)
     {
         b = 8;
         while (b--)
         {
-            if ((str[i] >> b) & 1)
+            if (((str[i] >> b) & 1) == 0)
                 kill(pid, SIGUSR1);
             else
                 kill(pid, SIGUSR2);
-            usleep(200);
+            usleep(42);
         }
+        if (str[i] == '\0')
+            break;
         i++;
     }
 }
@@ -42,6 +44,5 @@ int main(int ac, char *av[])
         return (-1);
     msg = av[2];
     send_msg(pid, msg);
-    
     return (0);
 }
