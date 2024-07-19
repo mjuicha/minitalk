@@ -1,0 +1,57 @@
+CC = cc
+
+HEADER = minitalk.h
+
+NAMESERVER = server
+
+NAMECLIENT = client
+
+CFLAGS = -Wall -Wextra -Werror
+
+SRCS = utils.c
+
+SRCSSERVER = server.c
+
+SRCSCLIENT = client.c
+
+SRCSSERVERBONUS = server_bonus.c
+
+SRCSCLIENTBONUS = client_bonus.c
+
+OBJ = $(SRCS:.c=.o)
+
+OBJSERVER = $(SRCSSERVER:.c=.o)
+
+OBJCLIENT = $(SRCSCLIENT:.c=.o)
+
+OBJSERVERBONUS = $(SRCSSERVERBONUS:.c=.o)
+
+OBJCLIENTBONUS = $(SRCSCLIENTBONUS:.c=.o)
+
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: $(NAMESERVER) $(NAMECLIENT)
+
+$(NAMESERVER): $(OBJSERVER) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJSERVER) -o $(NAMESERVER)
+
+$(NAMECLIENT): $(OBJCLIENT) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJCLIENT) $(OBJ) -o $(NAMECLIENT)
+
+$(NAMESERVERBONUS): $(OBJSERVERBONUS) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJSERVERBONUS) -o $(NAMESERVER)
+
+$(NAMECLIENTBONUS): $(OBJCLIENTBONUS)
+	$(CC) $(CFLAGS) $(OBJCLIENTBONUS) -o $(NAMECLIENT)
+	
+bonus: $(NAMESERVERBONUS) $(NAMECLIENTBONUS)
+
+
+clean:	
+	rm -f $(OBJSERVER) $(OBJCLIENT)
+
+fclean: clean
+	rm -f $(NAMESERVER) $(NAMECLIENT)
+
+re: fclean all

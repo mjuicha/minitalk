@@ -23,13 +23,12 @@ int main()
 {
     struct sigaction sa;
 
-    sa.sa_handler = Receive_signal;
+    sa.sa_handler = &Receive_signal;
     sa.sa_flags = 0;
     printf("%d\n",getpid());
     sigaction(SIGUSR1, &sa, NULL);
     sigaction(SIGUSR2, &sa, NULL);
     while (1)
         pause();
-        system("leaks server");
     return 0;
 }

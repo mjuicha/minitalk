@@ -24,7 +24,7 @@ void    send_msg(int pid, char *str)
                 kill(pid, SIGUSR1);
             else
                 kill(pid, SIGUSR2);
-            usleep(42);
+            usleep(500);
         }
         if (str[i] == '\0')
             break;
