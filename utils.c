@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/20 11:21:00 by mjuicha           #+#    #+#             */
+/*   Updated: 2024/07/20 11:46:50 by mjuicha          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 int	isoverflow(long long int check, long long int res)
@@ -57,26 +69,16 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int check(char *str)
+int	check(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (!ft_isdigit(str[i]))
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
-size_t	ft_strlen(char *str)
-{
-	int	x;
-
-	x = 0;
-	while (str[x] != '\0')
-		x++;
-	return (x);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
