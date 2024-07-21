@@ -6,17 +6,28 @@
 /*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 11:20:32 by mjuicha           #+#    #+#             */
-/*   Updated: 2024/07/20 11:38:03 by mjuicha          ###   ########.fr       */
+/*   Updated: 2024/07/21 13:49:19 by mjuicha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	receive_signal(int signal)
+void	ft_reset(unsigned char *current_char, int *b)
 {
-	static char	current_char;
-	static int	b;
+	*current_char = 0;
+	*b = 0;
+}
 
+void	receive_signal(int signal, siginfo_t *s, void *c)
+{
+	static unsigned char	current_char;
+	static int				b;
+	static int				pid;
+
+	c = 0;
+	if (pid != s->si_pid)
+		ft_reset(&current_char, &b);
+	pid = s->si_pid;
 	current_char <<= 1;
 	current_char |= (signal == SIGUSR2);
 	b++;
@@ -33,9 +44,13 @@ void	receive_signal(int signal)
 
 int	main(void)
 {
+	struct sigaction	sa;
+
+	sa.sa_sigaction = &receive_signal;
+	sa.sa_flags = SA_SIGINFO;
 	ft_printf("SERVER PID: %d\n", getpid());
-	signal(SIGUSR1, receive_signal);
-	signal(SIGUSR2, receive_signal);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
 	return (0);

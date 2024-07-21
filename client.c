@@ -6,7 +6,7 @@
 /*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 11:21:19 by mjuicha           #+#    #+#             */
-/*   Updated: 2024/07/20 11:30:18 by mjuicha          ###   ########.fr       */
+/*   Updated: 2024/07/21 13:48:56 by mjuicha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	send_msg(int pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(500);
+			usleep(900);
 		}
 		if (str[i] == '\0')
 			break ;
