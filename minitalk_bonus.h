@@ -6,7 +6,7 @@
 /*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:01:44 by mjuicha           #+#    #+#             */
-/*   Updated: 2024/07/21 13:36:53 by mjuicha          ###   ########.fr       */
+/*   Updated: 2024/07/24 04:16:02 by mjuicha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 typedef struct struct_unicode
 {

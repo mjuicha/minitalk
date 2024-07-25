@@ -6,7 +6,7 @@
 /*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 11:59:10 by mjuicha           #+#    #+#             */
-/*   Updated: 2024/07/21 13:33:16 by mjuicha          ###   ########.fr       */
+/*   Updated: 2024/07/24 04:28:59 by mjuicha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	errors_in_main(int ac, char **av)
 	return (0);
 }
 
+void	ft_error(void)
+{
+	write(1, "Error\n", 6);
+	exit(1);
+}
+
 void	send_msg(int pid, char *str)
 {
 	int	i;
@@ -39,9 +45,15 @@ void	send_msg(int pid, char *str)
 		while (b--)
 		{
 			if (((str[i] >> b) & 1) == 0)
-				kill(pid, SIGUSR1);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+					ft_error();
+			}
 			else
-				kill(pid, SIGUSR2);
+			{
+				if (kill(pid, SIGUSR2) == -1)
+					ft_error();
+			}
 			usleep(900);
 		}
 		if (str[i] == '\0')

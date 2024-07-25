@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/20 11:41:02 by mjuicha           #+#    #+#             */
-/*   Updated: 2024/07/24 04:29:11 by mjuicha          ###   ########.fr       */
+/*   Created: 2023/12/03 18:01:04 by mjuicha           #+#    #+#             */
+/*   Updated: 2024/07/24 04:25:55 by mjuicha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "ft_printf.h"
 
-# include "ft_printf/ft_printf.h"
-# include <signal.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-int		isoverflow(long long int check, long long int res);
-int		is_sspace(const char *str, int *pt);
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
-int		check(char *str);
-
-#endif
+void	ft_putchar(char c, int *count)
+{
+	if (write(1, &c, 1))
+	{
+		*count += 1;
+		return ;
+	}
+	*count = -1;
+}

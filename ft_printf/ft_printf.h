@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjuicha <mjuicha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/20 11:41:02 by mjuicha           #+#    #+#             */
-/*   Updated: 2024/07/24 04:29:11 by mjuicha          ###   ########.fr       */
+/*   Created: 2023/12/03 19:22:29 by mjuicha           #+#    #+#             */
+/*   Updated: 2024/07/24 04:53:50 by mjuicha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include "ft_printf/ft_printf.h"
-# include <signal.h>
-# include <stdio.h>
+# include <stdarg.h>
 # include <unistd.h>
-# include <stdlib.h>
 
-int		isoverflow(long long int check, long long int res);
-int		is_sspace(const char *str, int *pt);
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
-int		check(char *str);
+int		ft_printf(const char *format, ...);
+void	ft_putchar(char c, int *count);
+void	ft_putnbr(int n, int *count);
+void	ft_putstr(char *s, int *count);
+void	ft_putunsignednbr(unsigned int n, int *count);
+void	lowerhex(unsigned long int n, int *count);
+void	upperhex(unsigned long int n, int *count);
+void	ft_address(void *ptr, int *count);
 
 #endif
